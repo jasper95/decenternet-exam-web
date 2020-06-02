@@ -1,0 +1,167 @@
+.cenvi .albumCard {
+	padding: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	// .albumCard_media
+	&_media {
+		padding: 4rem;
+		// .albumCard_media_img
+		&_img {
+			width: 100%;
+			height: 500px;
+			object-fit: cover;
+			object-position: center center;
+		}
+	}
+
+	// .albumCard_content
+	&_content {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-direction: column;
+	}
+
+	// .albumCard_category
+	&_category {
+		text-transform: uppercase;
+		font-size: 1rem;
+		letter-spacing: .25em;
+		font-weight: 600;
+		line-height: 1;
+		margin-top: 0;
+		margin-bottom: 0;
+		color: $secondary-color;
+	}
+
+	// .albumCard_header
+	&_header {
+		font-weight: 600;
+		font-size: 2.5rem;
+		color: $text-header-color;
+		line-height: 1.4;
+		margin-bottom: 1rem;
+		cursor: pointer;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	// .albumCard_tags
+	&_tags {
+		margin-bottom: 2rem;
+	}
+
+	// .albumCard_createdDate
+	&_createdDate {
+		font-size: 1rem;
+		color: $gray-400;
+	}
+	// .albumCard_description
+	&_description {
+		text-align: left;
+	}
+
+	&_images {
+		margin-top: 2rem;
+		width: 60%;
+	}
+}
+
+/* ==========================================================================
+   PREVIEW IMG
+   ========================================================================== */
+$gutter: .5rem;
+.cenvi .albumCard .previewImg {
+
+
+	// .previewImg_label
+	&_label {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+
+		width: 100%;
+		text-transform: uppercase;
+		font-size: .8rem;
+		color: $primary-color;
+		text-align: left;
+		font-weight: 600;
+		line-height: 1;
+		margin-bottom: 1rem;
+
+		&:after {
+			content: '';
+			width: 4rem;
+			height: .15rem;
+			margin-left: .5rem;
+			background-color: $gray-200;
+		}
+	}
+
+	// .previewImg_container
+	&_container {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	// .previewImg_item
+	&_item {
+		width: calc(#{percentage(1/4)} - #{$gutter});
+		padding-top: calc(#{percentage(1/4)} - #{$gutter});;
+		position: relative;
+		overflow: hidden;
+		margin: $gutter/2;
+		border-radius: .5rem;
+
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+		}
+
+		.countContainer {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			background-color: $gray-100;
+			padding: 1em;
+			cursor: pointer;
+
+			.count {
+				line-height: 1;
+				margin-bottom: 0;
+				font-size: 2rem;
+				font-weight: bold;
+			}
+
+			.text {
+				font-size: .8rem;
+				line-height: 1;
+				margin-bottom: 0;
+				font-weight: 600;
+			}
+
+			&:hover {
+				background-color: $gray-200;
+			}
+		}
+	}
+}

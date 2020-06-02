@@ -1,0 +1,173 @@
+.cenvi .albumDetailPage {
+
+	// .albumDetailPageSection
+	&Section {
+		padding-top: 0;
+	}
+
+	// .albumDetailPage_heroBanner
+	&_heroBanner {
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		height: 400px;
+		// .albumDetailPage_heroBanner_count
+		&_count {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(#000,.5);
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease-out;
+
+			.count {
+				font-size: 4rem;
+				color: $white;
+				line-height: 1;
+				margin-bottom: .25rem;
+			}
+
+			.text {
+				color: $white;
+				text-transform: uppercase;
+				letter-spacing: .25em;
+			}
+		}
+
+		// .albumDetailPage_heroBanner_img
+		&_img {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: 50% 50%;
+			}
+		}
+
+		&:hover {
+			.albumDetailPage_heroBanner_count {
+				opacity: 1;
+			}
+		}
+	}
+	
+	// .albumDetailPage_container
+	&_container {
+		position: relative;
+		padding: 1rem 2rem;
+		z-index: 10;
+		width: 100%;
+		max-width: 1024px;
+		margin: -5rem auto 0;
+		background-color: $white;
+	}
+
+	// .albumDetailPage_heroDetails
+	&_heroDetails {
+
+	}
+
+	// .albumDetailPage_title
+	&_title {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		text-align: center;
+		width: 100%;
+		color: $text-color;
+		font-weight: 600;
+
+		&:after {
+			content: '';
+			width: 3rem;
+			height: .2rem;
+			margin-top: .5rem;
+			background-color: $primary-color;
+		}
+	}
+
+
+	// .albumDetailPage_imagesLabel
+	&_imagesLabel {
+		margin-top: 4rem;
+		margin-bottom: 2rem;
+		text-transform: uppercase;
+		letter-spacing: .25em;
+		font-weight: 600;
+		color: $text-color;
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		&:after {
+			content: '';
+			width: 3rem;
+			height: .1rem;
+			background-color: $primary-color;
+			margin-left: .15em;
+		}
+	}
+
+	// .albumDetailPage_imageList
+	&_imageList {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+
+		// .albumDetailPage_imageList_item
+		$gutter: 2rem;
+		&_item {
+			width: calc(#{percentage(1/2)} - #{$gutter});
+			margin: $gutter/2;
+			position: relative;
+
+			// .albumDetailPage_imageList_item_image
+			&_image {
+				width: 100%;
+				position: relative;
+				padding-top: 75%;
+
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: 50% 50%;
+				}
+			}
+
+			// .albumDetailPage_imageList_item_image
+			&_desc {
+				padding: 1rem;
+				padding-top: 1rem;
+				background-color: rgba($primary-color, .05);
+
+				.label {
+					text-transform: uppercase;
+					font-size: .8rem;
+					letter-spacing: 0.15em;
+					color: $primary-color;
+					font-weight: 600;
+					margin-bottom: .5rem;
+				}
+			}
+		}
+	}
+}

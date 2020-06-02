@@ -1,0 +1,35 @@
+import React from 'react';
+import Button from 'react-md/lib/Buttons/Button';
+import cn from 'classnames';
+import flowRight from 'lodash/flowRight';
+import withDialog from 'shared/hocs/withDialog';
+
+function ConfirmDialog(props) {
+  const { message } = props;
+  return message;
+}
+
+const Dialog = flowRight(
+  withDialog(),
+)(ConfirmDialog);
+
+export function DialogActions(props) {
+  const { onContinue, isProcessing } = props;
+  return (
+    <>
+      <Button
+        className={cn('iBttn iBttn-error', { processing: isProcessing })}
+        flat
+        onClick={onContinue}
+        children="Continue"
+      />
+    </>
+  );
+}
+
+Dialog.defaultProps = {
+  dialogActionsRenderer: DialogActions,
+  dialogClass: 'messageDialog',
+};
+
+export default Dialog;

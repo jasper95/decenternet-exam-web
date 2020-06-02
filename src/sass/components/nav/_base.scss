@@ -1,0 +1,397 @@
+
+$menu-text-color: rgba($text-color,.85);
+$menu-text-color-hovered: $text-color;
+$menu-text-color-active: $primary-color;
+$menu-sub-bg: $tertiary-color;
+
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	background-color: $white;
+	height: $nav-height;
+	font-size: 1rem;
+	padding: 0 1em;
+	box-shadow: 0 .5em 1rem 0 rgba(#000,.05);
+
+	// .nav_container
+	&_container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		margin: 0 auto;
+	}
+
+	// .nav_logo
+	&_logo {
+		margin: auto 0;
+		height: 100%;
+		width: auto;
+		cursor: pointer;
+		padding: .5rem;
+		padding-right: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		font-family: $font-family;
+		font-size: 3em;
+		font-weight: 900;
+		color: $primary-color;
+	}
+
+	// .nav_actions
+	&_actions {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		height: 100%;
+
+		> .iBttn {
+			height: auto;
+			&:not(:last-child) {
+				margin-right: .5rem;
+			}
+		}
+	}
+
+
+	// .nav_profile
+	&_profile {
+		font-size: 1em;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0 1em;
+		position: relative;
+
+		> .skeleton {
+			width: 10rem;
+			height: 100%;
+		}
+
+		// nav_profile_settings
+		&_settings {
+
+		}
+	}
+}
+
+/* ==========================================================================
+   MENU
+   ========================================================================== */
+.nav_menu {
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	// nav_menu_list
+	&_list {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		margin: 0;
+		padding-left: 0;
+		list-style-type: none;
+
+		// nav_menu_list_item
+		&_item {
+			position: relative;
+			color: $menu-text-color;
+			padding: 0 .5em;
+			background-color: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+
+			.text {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: inherit;
+				font-family: $font-family;
+				font-weight: normal;
+				flex-shrink: 0;
+				height: 100%;
+				font-weight: 600;
+				text-transform: uppercase;
+
+				&:before {
+					content: '';
+					position: absolute;
+					top: calc(100% + .25em);
+					left: 50%;
+					width: 2rem;
+					height: .2rem;
+					margin-left: -1rem;
+					background-color: $primary-color;
+					border-radius: 1em;
+					transform: scaleX(0);
+					transition: transform 150ms ease-out;
+				}
+
+				&:hover {
+					cursor: pointer;
+				}
+				&:visited {
+					color: inherit;
+				}
+			}
+
+			.iBttn-toggleSubmenu {
+				width: 20px;
+				height: 20px;
+				min-width: unset;
+				padding: 0;
+				padding-left: 0;
+				padding-right: 0;
+				background-color: transparent !important;
+				color: $gray-200;
+
+				.md-icon {
+					transform: rotate(0deg);
+					transition: transform 300ms ease-out;
+				}
+
+				&.active {
+					.md-icon {
+						transform: rotate(180deg);
+					}
+				}
+			}
+		}
+
+		// nav_menu_list_item.active
+		&_item.active {
+			> .text {
+				font-weight: bold;
+				color: $menu-text-color-active;
+			}
+		}
+
+		// nav_menu_list_item:hover
+		&_item:hover {
+			> .text {
+				color: $menu-text-color-hovered;
+				&:before {
+					transform: scaleX(1);
+				}
+			}
+		}
+	}
+
+	&_list:hover {
+		> .text {
+			color: $menu-text-color-hovered;
+		}
+	}
+
+
+
+	&_list_item.hasSubmenu {
+		padding-right: 0;
+		.text {
+			cursor: pointer;
+		}
+	}
+}
+
+/* ==========================================================================
+   SUBMENU
+   ========================================================================== */
+.nav_menu_list_item_sub {
+	position: absolute;
+	top: calc( 100% + 10px );
+	left: 10%;
+	width: 100vw;
+	max-width: 200px;
+	background-color: $menu-sub-bg;
+	transform: translateY(-10px);
+	border-radius: .5em;
+	padding: .5em;
+	opacity: 0;
+	visibility: hidden;
+	box-shadow: 0 .25rem 1em 0 rgba(#000,.1);
+	transition:
+		transform 150ms ease-out 150ms,
+		opacity 150ms ease-out 150ms,
+		visibility 150ms ease-out 150ms;
+
+	.nav_menu_list {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.nav_menu_list_item {
+		width: 100%;
+		padding : .25rem 1.25rem;
+		color: $text-color-white;
+		font-weight: normal;
+
+		&:hover {
+			color: $text-color-white;
+			background-color: rgba(#000,.1);
+		}
+
+		&.active {
+			color: $primary-color;
+			background-color: rgba(#FFF,.05);
+		}
+
+		.text {
+			width: 100%;
+			color: inherit !important;
+			text-align: center;
+			white-space: normal;
+			font-weight: inherit;
+			text-transform: none;
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 1em;
+		bottom: 100%;
+		display: inline-block;
+		border-bottom: 10px solid $menu-sub-bg;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+	}
+
+	&.active {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+/* ==========================================================================
+   AVATAR LIST SETTINGS
+   ========================================================================== */
+.nav_profile .md-list {
+	top: 100%;
+	right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+
+	// .md-list-item
+	&-item {
+		width: 100%;
+		.md-text ,
+		.md-fake-btn {
+			color: $text-color-white;
+		}
+	}
+
+	// .md-list-tile
+	&-tile {
+		width: 100%;
+
+		.md-tile-content--left-icon {
+			font-size: 1em;
+			padding-left: 1em;
+		}
+		.md-text {
+			font-family: $font-family;
+			font-size: 1em;
+		}
+		.md-icon {
+			color: $primary-color;
+		}
+	}
+}
+
+// ==============================
+// PROFILE SETTINGS
+// ==============================
+.nav #nav_profile_settings {
+	// #nav_profile_settings-toggle
+	&-toggle {
+		background-color: transparent !important;
+		color: $menu-text-color;
+		&:hover {
+			color: $primary-color;
+		}
+	}
+}
+
+// ==============================
+// AVATAR SETTINGS
+// ==============================
+.nav #nav_profile_avatar {
+	// #nav_profile_avatar-toggle
+	&-toggle {
+		display: flex !important;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: row;
+		font-size: 1em;
+		background-color: transparent !important;
+	}
+
+	// #nav_profile_avatar-list
+	&-list {
+		top: calc( 100% + 1rem );
+		padding: .5rem;
+		border-radius: .25rem;
+		overflow: visible;
+		background-color: $menu-sub-bg;
+		&:before {
+			content: '';
+			position: absolute;
+			bottom: 100%;
+			right: 1rem;
+			border-bottom: 10px solid $menu-sub-bg;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+		}
+	}
+
+
+	.name {
+		font-size: 1rem;
+		font-weight: 600;
+		margin: 0 1em;
+	}
+
+	.avatar {
+		width: $nav-avatar-size;
+		height: $nav-avatar-size;
+		border-radius: 50%;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-positon: 50% 50%;
+		}
+	}
+
+	&:hover {
+		.name {
+			color: $menu-text-color-hovered;
+		}
+	}
+}
+
+/* ==========================================================================
+   1366px
+   ========================================================================== */
+@media (max-width: 1367px) {
+	.cenvi .container.nav_container {
+		max-width: 100% ;
+	}
+}

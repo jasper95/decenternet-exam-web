@@ -1,0 +1,10 @@
+.iframeViewer {
+    width: 100%;
+    position: relative;
+    padding-top: 150%;
+    > iframe {
+        @extend %absoluteFill;
+        box-shadow: none;
+        border: 1px solid $gray-300;
+    }
+}

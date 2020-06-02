@@ -1,0 +1,19 @@
+.topnav {
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 0 1rem;
+
+	// .topnav_logout
+	&_logout {
+		margin-left: auto;
+	}
+}
+
+@media (max-width: 737px) {
+	.topnav {
+		// width: 100vw;
+		max-width: 100vw;
+	}
+}

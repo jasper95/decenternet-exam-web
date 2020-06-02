@@ -1,0 +1,145 @@
+/* ==========================================================================
+   MAIN GRID HOLDER
+   ========================================================================== */
+.cenvi .albumPhotoCardFormGridContainer {
+	width: 100%;
+	padding: 1rem;
+	background-color: $lightgray;
+}
+
+/* ==========================================================================
+   GRID CONTAINER
+   ========================================================================== */
+$items : 4;
+.cenvi .albumPhotoCardGridContainer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(#{$items}, 1fr);
+
+	@media (max-width: 1441px) {
+		grid-template-columns: repeat(#{( $items - 1 )}, 1fr);
+	}
+
+	@media (max-width: 1367px) {
+		grid-template-columns: repeat(#{( $items - 2 )}, 1fr);
+	}
+
+	@media (max-width: 1025px) {
+		grid-template-columns: repeat(#{( $items - 3 )}, 1fr);
+	}
+}
+
+/* ==========================================================================
+   GRID SORTABLE COLUMN HOLDER
+   ========================================================================== */
+.cenvi .albumPhotoCardGridColumn {
+	
+}
+
+
+/* ==========================================================================
+   BASIC STUFF
+   ========================================================================== */
+$gutter : 1rem;
+
+.cenvi .albumPhotoCard {
+	position: relative;
+	width: calc(100% - #{ $gutter });
+	background-color: #fff;
+	margin: $gutter /2;
+	position: relative;
+	padding: 1rem;
+	box-shadow: 0 0 1em 0 rgba(#000,.05);
+
+	cursor: move;
+	cursor: grab;
+	cursor: -moz-grab;
+	cursor: -webkit-grab;
+
+	overflow: hidden;
+
+	transition: box-shadow .3s ease-out;
+
+	// .albumPhotoCard_setFavorite
+	&_setFavorite {
+		position: absolute;
+		top: .5rem;
+		left: .5rem;
+		z-index: 10; 
+		font-size: 1rem;
+		width: 2em;
+		height: 2em;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $gray-100;
+		border: 1px solid $text-color;
+		border-radius: .25rem;
+
+		i {
+			font-size: 1em;
+			color: $text-color;
+		}
+
+		// .albumPhotoCard_setFavorite-favorite
+		&-favorite {
+			background-color: $orange;
+			box-shadow: 0 0 1em 0 rgba(#000,.25);
+			border: none;
+
+			i {
+				color: #FFF;
+			}
+		}
+	}
+
+	// .albumPhotoCard_handle
+	&_handle {
+		position: absolute;
+		top: .25rem;
+		left: .25rem;
+		z-index: 10;
+	}
+
+	// .albumPhotoCard_media
+	&_media {
+		width: 100%;
+		padding-top: 75%;
+		margin-bottom: 1rem;
+		// height: 100px;
+		background-color: $lightgray;
+		position: relative;
+	}
+
+	// .albumPhotoCard_img
+	&_img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: 50% 50%;
+	}
+
+	// .albumPhotoCard_description
+	&_description {
+		padding: 0;
+	}
+
+	// .albumPhotoCard_actions
+	&_actions {
+		width: 100%;
+		height: auto;
+		margin-top: 1rem;
+
+		.iBttn {
+			width: 100%;
+		}
+	}
+}
+
+.cenvi .albumPhotoCard:hover {
+	box-shadow: 0 0 1em 0 rgba(#000,.15);
+}

@@ -1,0 +1,34 @@
+p,.h1,.h2,.h3,.h4,.h5,.h6,
+h1,h2,h3,h4,h5,h6, 
+button, input, textarea, html {
+	font-family: $font-family;
+}
+
+p {
+	font-size: 1em;
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.8;
+}
+
+a {
+	font-weight: 600;
+	text-decoration: none;
+	color: $primary-color;
+
+	&:hover {
+		color: $primary-color;
+	}
+}
+
+
+.md-text--theme-primary {
+	color: $primary-color;
+}
+
+// .header-1 {
+// 	font-family: $font-family-header;
+// 	font-weight: 800;
+// 	font-size: 2.5rem;
+// 	color: $text-color;
+// }

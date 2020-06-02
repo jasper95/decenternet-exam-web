@@ -1,0 +1,157 @@
+$accent-color: #1a899c;
+.adminPortal .sidebar {
+	background-color: $sidebar-bg;
+	overflow: hidden;
+
+	// .sidebar_logo
+	&_logo {
+		position: relative;
+		width: 100%;
+		height: $nav-height;
+		img {
+			position: absolute;
+			top: 10%;
+			left: 10%;
+			width: 80%;
+			height: 80%;
+			opacity: 1;
+			object-fit: contain;
+			object-position: center;
+			transition: opacity 300ms ease-out;
+		}
+
+		.logoSm {
+			opacity: 0;
+		}
+	}
+
+	// .sidebar_list
+	&_list {
+		padding: 0;
+		background-color: transparent !important;
+
+		// .sidebar_list_item
+		&_item {
+			position: relative;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				width: 100%;
+				opacity: 0;
+				pointer-events: none;
+				background-image: linear-gradient(
+					to right,
+					rgba($accent-color,0),
+					rgba($accent-color,.2),
+					rgba($accent-color,.4),
+				);
+				transition: opacity 300ms ease-out;
+			}
+
+			[role="button"] {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				cursor: pointer;
+				padding: 0;
+			}
+
+			.md-tile-addon--icon {
+				padding: 1em;
+				height: auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				i , i:before {
+					color: rgba($text-color,.25);
+				}
+			}
+
+
+			.md-tile-content {
+				padding-left: 1rem;
+			}
+
+			.md-text {
+				color: rgba($text-color,.75);
+				font-size: 1rem;
+				font-weight: bold;
+				font-family: $font-family;
+				text-transform: capitalize;
+			}
+
+			[role="button"] {
+				background-color: transparent !important;
+			}
+		}
+
+		// .sidebar_list_item:hover
+		// .sidebar_list_item.active
+		&_item.active ,
+		&_item:hover {
+			&:before {
+				opacity: 1;
+			}
+
+			.md-tile-addon--icon i ,
+			.md-tile-addon--icon i:before {
+				color: $accent-color !important;
+			}
+
+			.md-text {
+				color: $accent-color;
+			}
+		}
+
+	}
+}
+
+.adminPortal_sidebar-collapsed {
+	.sidebar_logo {
+		.logoSm {
+			opacity: 1;
+		}
+		.logo {
+			opacity: 0;
+		}
+	}
+
+	.sidebar_list_item {
+		[role="button"] {
+			display: flex;
+			flex-direction: column;
+			height: auto;
+			.md-tile-addon--icon {
+				padding: .5rem;
+			}
+
+			.md-icon {
+				font-size: 1.5rem;
+				margin-bottom: .5rem;
+			}
+
+			.md-tile-content {
+				padding-left: 0;
+				width: 100%;
+			}
+
+			.md-text {
+				text-align: center;
+				font-size: .75rem;
+				font-weight: normal;
+				text-transform: uppercase;
+				letter-spacing: .15em;
+			}
+		}
+	}
+
+	.sidebar_list_item.active {
+		.md-icon {
+			color: #FFF !important;
+		}
+	}
+}

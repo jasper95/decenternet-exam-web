@@ -1,0 +1,39 @@
+{
+  "name": "RAMONS",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/service-worker.js",
+      "headers": { "cache-control": "maxage=0" },
+      "dest": "/service-worker.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "headers": { "cache-control": "public, max-age=31536000" },
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/index.html"
+    }
+  ],
+  "build": {
+    "env": {
+      "SESSION_SECRET": "@session_secret",
+      "API_URL": "@api_url",
+      "API_USERNAME": "@api_username",
+      "API_PASSWORD": "@api_password",
+      "CAPTCHA_KEY": "@captcha_key",
+      "GRAPHQL_URL": "@graphql_url",
+      "AUTH_SECRET": "@auth_secret"
+    }
+  }
+}

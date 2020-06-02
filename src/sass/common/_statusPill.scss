@@ -1,0 +1,29 @@
+%standardPill {
+	font-size: .8rem;
+	padding: .5rem 1.5rem;
+	border-radius: .25rem;
+	background-color: $gray-100;
+	text-transform: uppercase;
+	letter-spacing: .15em;
+	font-weight: 600;
+}
+
+.statusPill {
+	@extend %standardPill;
+
+	// .statusPill-published
+	&-published {
+		background-color: $success;
+		color: #FFF;
+	}
+}
+
+.pill {
+	@extend %standardPill;
+	background-color: darken($gray-100, 5%);
+	border-radius: 1rem;
+	&:hover {
+		color: $text-color-white;
+		background-color: $primary-color;
+	}
+}

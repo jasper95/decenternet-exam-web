@@ -1,0 +1,119 @@
+
+%squareCell {
+	width: 48px;
+	max-width: 48px;
+	height: 48px;
+}
+
+.tableRiskMap {
+	width: 100%;
+	overflow-y: auto !important;
+	table-layout: fixed;
+
+	.md-table-header {
+		background-color: $primary-color-600;
+
+		.md-table-column {
+			padding: 1em .5em !important;
+			color: #FFF;
+		}
+	}
+
+	.md-table-column {
+		padding: 0 !important;
+	}
+
+	&_risk-index {
+		@extend %squareCell;
+
+		.number {
+			@extend %squareCell;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+	}
+
+	&_risk-level {
+		@extend %squareCell;
+
+		.level {
+			@extend %squareCell;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-weight: bold;
+			font-size: 1.25em;
+			color: #FFF;
+
+			&-low {
+				background-color: $rafi-riskLegend-low;
+			}
+
+			&-moderate {
+				background-color: $rafi-riskLegend-moderate;
+			}
+
+			&-high {
+				background-color: $rafi-riskLegend-high;
+			}
+
+			&-critical {
+				background-color: $rafi-riskLegend-critical;
+			}
+		}
+	}
+
+	&_risk-name {
+		.riskname {
+			font-weight: 600;
+			color: $black;
+			width: 100%;
+			cursor: pointer;
+
+			&:hover {
+				color: $primary-color;
+			}
+		}
+	}
+
+	&_risk-vc {
+		@extend %squareCell;
+		.vcStatus {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			font-size: 1.5em;
+			cursor: pointer;
+		}
+
+		.vcStatus-up {
+			color: $error;
+		}
+
+		.vcStatus-down {
+			color: $success;
+		}
+
+		.vcStatus-stagnant {
+			color: $primary-color;
+		}
+
+		.vcStatus-new .text {
+			color: $darkgray;
+			font-size: .9rem;
+			font-weight: normal;
+			font-style: italic;
+		}
+	}
+}
+
+.tableRiskMapContainer {
+	width: 100%;
+	overflow: hidden;
+}

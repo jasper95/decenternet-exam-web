@@ -1,0 +1,61 @@
+.article {
+
+	// .article_textContainer
+	&_textContainer {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	// .article_header
+	&_header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		margin-bottom: 2rem;
+	}
+
+	// .article_title
+	&_title {
+		font-size: 5rem;
+		font-weight: bold;
+		color: $text-color;
+		margin-bottom: .75em;
+	}
+
+	// .article_tags
+	&_tags {
+		margin: 1rem 0;
+	}
+
+	// .article_author
+	&_author {
+		width: auto;
+	}
+
+	// .article_image
+	&_image {
+		max-width: 900px;
+		height: 25rem;
+		margin: 0 auto 5rem;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+		}
+	}
+
+	// .article_contents
+	&_contents {
+		font-size: 1.15em;
+		line-height: 2;
+		text-align: justify;
+		p {
+			text-align: justify;
+			line-height: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+.tag {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	// .tag_item
+	&_item {
+		color: $text-color;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: .75rem;
+		letter-spacing: .15em;
+		padding: .25em 1.25em;
+		border-radius: 1em;
+		background-color: $c_gray-100;
+		margin-bottom: .5rem;
+
+		&:not(:last-child) {
+			margin-right: .5rem;
+		}
+
+		&:hover {
+			background-color: $primary-color;
+			color: $white;
+		}
+	}
+}

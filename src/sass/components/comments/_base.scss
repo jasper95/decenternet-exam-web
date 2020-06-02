@@ -1,0 +1,36 @@
+.commentForm {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 100%;
+
+	// .commentForm_replies
+	&_replies {
+		flex-shrink: 0;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+
+		.reply_empty {
+			@extend %emptyStringMessage;
+			margin-bottom: 0;
+			min-height: 15rem;
+		}
+	}
+
+	// .commentForm_actions
+	&_actions {
+		flex-shrink: 0;
+		width: 100%;
+	}
+}
+
+@media (min-height: 600px) {
+	.commentForm_replies {
+		overflow-y: auto;
+		max-height: calc( 100vh - 30rem);
+	}
+}

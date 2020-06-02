@@ -1,0 +1,317 @@
+$table-header-bg: $table-header-bg;
+$table-header-text: $primary-color-200;
+
+.iTable {
+	font-size: 1em;
+	font-family: $font-family;
+	// overflow: visible;
+	position: relative;
+	table-layout: fixed;
+	width: 100%;
+	overflow: visible;
+
+
+	.md-data-table {
+		background-color: $white;
+	}
+
+	// .iTable_cell
+	&_cell {
+		font-size: 1em;
+		font-family: $font-family;
+		color: $black;
+		height: auto;
+		padding: 1em;
+	}
+
+	// .iTable_header
+	&_header {
+		font-size: 1em;
+		background-color: $table-header-bg;
+		color: $black;
+		height: auto;
+
+		th ,
+		.iTable_cell {
+			font-weight: bold;
+			color: $table-header-text;
+			border-bottom: .15em solid $primary-color;
+		}
+
+	}
+	// iTable_body
+	&_body {
+		.iTable_cell {
+			padding: .25em 1em;
+		}
+		.tableCell {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			min-height: 2rem;
+		}
+	}
+
+	// iTable_pagination
+	&_pagination {
+
+		.md-table-column {
+			padding-right: 0;
+			padding-top: 2rem;
+		}
+
+		.md-table-pagination {
+			height: auto;
+			position: relative;
+			margin-left: auto !important;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			&:not(:empty) {
+				border-top: 1px solid $table-footer-select-bg;
+				padding-top: 1rem;
+			}
+		}
+
+		.md-table-pagination__label {
+			font-size: 1rem;
+			font-weight: 600;
+			color: $primary-color;
+			margin: 1ch;
+		}
+
+		[id*="-pagination-decrement-btn"],
+		[id*="-pagination-increment-btn"] {
+			&:disabled {
+				opacity: 0.5;
+				background-color: $table-footer-select-bg;
+				border-radius: .25rem;
+				margin: 0 0.15rem;
+				cursor: not-allowed;
+			}
+		}
+
+		.md-menu--select-field {
+			margin: 0 1rem;
+		}
+
+		.md-table-pagination--label {
+			font-size: 1rem;
+			font-weight: 600;
+			color: $text-color;
+			letter-spacing: 0.25em;
+			margin: 0 1rem;
+		}
+
+		.md-list {
+			padding: 0;
+		}
+
+		#iTable_pagination-toggle {
+			padding: 0.25rem 1rem;
+			box-shadow: none;
+			background-color: $table-footer-select-bg;
+
+
+			.md-select-field--btn.md-select-field--btn {
+				height: auto;
+			}
+
+			.md-icon-separator {
+				padding: 0;
+			}
+
+			.md-icon-text {
+				font-weight: 600;
+				color: $text-color;
+				font-size: 1rem;
+				padding: 0.5rem 1rem;
+			}
+		}
+
+		#iTable_pagination-menu-options {
+			.md-list-item .md-fake-btn {
+				height: auto;
+				padding: 1rem;
+				.md-text {
+					font-size: 1rem;
+					color: $text-color;
+				}
+			}
+
+		}
+	}
+
+	// table cell checkboxes
+	.md-table-checkbox {
+		width: 40px;
+		max-width: 40px;
+		min-width: 40px;
+		vertical-align: middle;
+		.md-selection-control-container {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+}
+
+// if empty
+.iTable-empty {
+	padding-bottom: 4rem;
+	.md-data-table {
+		position: relative;
+	}
+
+	.md-table-body {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		display: flex;
+		background-color: #fff;
+		padding: .75em;
+
+		> div:first-child {
+			width: 100%;
+			text-align: center;
+			opacity: .5;
+		}
+	}
+}
+
+
+@media (max-width: 737px) {
+	.iTable {
+		thead {
+			display: none !important;
+		}
+
+		table , tbody , tr  {
+			display: flex !important;
+			flex-direction: column;
+			width: 100%;
+			padding: 0 !important;
+			height: auto;
+		}
+
+		td {
+			width: 100% !important;
+			max-width: unset !important;
+			height: auto;
+			min-height: 48px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: .5rem 1rem !important;
+			border-bottom: 1px dashed rgba(#000,.25);
+		}
+
+		.tableCell {
+			width: 100% !important;
+			padding-top: 2rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			position: relative;
+
+			&:before {
+				content: attr(data-header-title);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 1rem;
+				font-size: .8rem;
+				color: $gray-400;
+				font-weight: 600;
+				margin-bottom: .5rem;
+				text-transform: uppercase;
+				letter-spacing: .15em;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+
+/**
+ * table loading
+ */
+
+ .iTable-loading {
+	 display: flex;
+	 width: 100%;
+ }
+
+ .iTable_preLoader {
+	 width: 100%;
+	 display: flex;
+	 align-items: flex-start;
+	 justify-content: flex-start;
+	 flex-direction: column;
+	 border-bottom: none;
+
+	//  .iTable_preLoader_header
+	&_header {
+		width: 100%;
+		height: auto;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		background-color: #ecf1f9;
+	}
+
+	//  .iTable_preLoader_cell
+	&_cell {
+		flex-grow: 1;
+		flex-shrink: 1;
+		padding: 1rem;
+
+		svg {
+			max-width: 270px;
+		}
+
+		&:not(:last-child) {
+			border-right: 2px solid darken(#ecf1f9, 2%);
+		}
+	}
+
+	//  .iTable_preLoader_body
+	&_body {
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+	}
+ }
+
+ @media (max-width: 737px) {
+
+	.iTable_preLoader_header {
+		display: none;
+	}
+
+	.iTable_preLoader_body {
+		flex-wrap: wrap;
+	}
+
+	.iTable_preLoader_cell {
+		width: 100%;
+		border-right: none !important;
+		&:not(:last-child) {
+			border-bottom: 2px solid darken(#ecf1f9, 2%);
+		}
+	}
+ }
+
+
+
+

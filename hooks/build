@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "------ HOOK START - BUILD -------"
+printenv
+
+docker build -t $IMAGE_NAME \
+  --build-arg API_URL=$API_URL \
+  --build-arg REACT_APP_API_USERNAME=$REACT_APP_API_USERNAME \
+  --build-arg REACT_APP_API_PASSWORD=$REACT_APP_API_PASSWORD \
+  --build-arg CAPTCHA_KEY=$CAPTCHA_KEY \
+  --build-arg STATIC_URL=$STATIC_URL \
+  --build-arg GEOSERVER_URL=$GEOSERVER_URL \
+  --no-cache .
+
+echo "------ HOOK END   - BUILD -------"

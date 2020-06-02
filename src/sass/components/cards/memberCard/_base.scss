@@ -1,0 +1,201 @@
+.cenvi .memberCard {
+	padding: 1em;
+	margin-bottom: 1em;
+	border-radius: .5em;
+	width: 100%;
+
+
+	// .memberCard_media
+	&_media {
+		width: 60%;
+		padding-top: 60%;
+		border-radius: 50%;
+		overflow: hidden;
+		position: relative;
+		margin: 0 auto;
+
+		// .memberCard_media_action
+		&_action {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(#000,.5);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: 200ms ease-out;
+		}
+
+		// .memberCard_media_img
+		&_img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+			z-index: 1;
+		}
+
+		&:hover {
+			.memberCard_media_action {
+				opacity: 1;
+			}
+		}
+	}
+
+	// .memberCard_info
+	&_info {
+		padding: 2rem 0 1rem;
+
+		// .memberCard_info_name
+		&_name {
+			font-weight: bold;
+			font-size: 1.25rem;
+			color: $text-header-color;
+			text-align: center;
+			width: 100%;
+			line-height: 1.15;
+			margin-bottom: 1rem;
+			display: block;
+		}
+
+		// .memberCard_info_role
+		&_role {
+			font-style: italic;
+			width: 100%;
+			font-size: 1rem;
+			color: $text-header-color;
+			text-align: center;
+			line-height: 1.15;
+			margin-bottom: 0;
+		}
+	}
+
+
+
+	// .memberCard_tags
+	&_tags {
+		width: 100%;
+
+		.tag_item {
+			color: $text-color;
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: .75rem;
+			letter-spacing: .15em;
+			padding: .5em 1.5em;
+			border-radius: 1em;
+			background-color: $c_gray-100;
+			margin-bottom: .5rem;
+
+			&:not(:last-child) {
+				margin-right: .5em;
+			}
+
+			&:hover {
+				background-color: $primary-color;
+				color: $white;
+			}
+		}
+	}
+
+	// .memberCard_excerpt
+	&_excerpt {
+		width: 100%;
+		margin-top: 2rem;
+		font-size: 1.15rem;
+		line-height: 1.4;
+		color: $text-color;
+	}
+
+	// .memberCard_link
+	&_link {
+		background-color: $white;
+		color: $text-color;
+		font-size: 2.5rem;
+		width: 1.5em;
+		height: 1.5em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.md-icon {
+			font-size: 1em;
+			line-height: 1;
+			transform: rotate(45deg);
+			transition: transform 300ms ease-out;
+		}
+
+		&:hover {
+			.md-icon {
+				transform: rotate(#{360 + 45}deg);
+			}
+		}
+	}
+
+	// .memberCard_author
+	&_author {
+		margin-top: 2rem;
+	}
+}
+
+
+/* ==========================================================================
+   AUTHOR
+   ========================================================================== */
+$avatar-size: 3rem;
+
+.cenvi .author {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	// .author_avatar
+	&_avatar {
+		width: $avatar-size;
+		height: $avatar-size;
+		border-radius: 50%;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+		}
+	}
+
+	// .author_info
+	&_info {
+		width: calc( 100% - #{$avatar-size});
+		padding: 0 1rem;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-direction: column;
+
+		// .author_info_name
+		&_name {
+			font-size: 1.15rem;
+			font-weight: bold;
+			line-height: 1;
+			margin-bottom: .25em;
+			color: $text-color;
+		}
+
+		// .author_info_position
+		&_position {
+			font-size: 1rem;
+			color: $darkgray;
+			line-height: 1;
+			margin-bottom: 0;
+		}
+	}
+}

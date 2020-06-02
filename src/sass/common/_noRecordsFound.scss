@@ -1,0 +1,17 @@
+.noRecords {
+	padding: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 40vh;
+	width: 100%;
+
+	// .noRecords_label
+	&_label {
+		font-size: 2rem;
+		font-weight: 600;
+		text-align: center;
+		color: $gray-400;
+		margin-bottom: 0;
+	}
+}

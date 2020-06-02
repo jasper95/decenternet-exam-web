@@ -1,0 +1,74 @@
+$tbl-label-left: $c_gray-100;
+$tbl-label-bottom: $c_beige-100;
+
+$map-legend-width: 150px;
+
+
+.riskMap {
+
+	width: 100%;
+
+	// .riskMap_row
+	&_row {
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	// .riskMap_legend
+	&_legend {
+		position: sticky;
+		top: $nav-height + 1;
+		left: 0;
+		flex-shrink: 0;
+		width: $map-legend-width;
+	}
+
+	// .riskMap_map
+	&_map {
+		flex-grow: 1;
+		flex-shrink: 1;
+		width: calc( 100% - #{$map-legend-width} );
+	}
+
+	// .riskMap_categories
+	&_categories {
+		width: 100%;
+		.mapCategories {
+			display: flex;
+			align-items: stretch;
+			justify-content: center;
+			flex-wrap: nowrap;
+		}
+
+		.iBttn {
+			width: percentage(1/6);
+			margin: .25em;
+		}
+	}
+}
+
+
+.tableRiskActions {
+	position: sticky;
+	top: $nav-height;
+	width: 100%;
+	height: calc(100vh - #{$nav-height} - 16px);
+
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+
+	.tableRiskMapToolbar {
+		flex-shrink: 0;
+	}
+
+	.tableRiskMap {
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+}

@@ -1,0 +1,71 @@
+.cenvi .footer {
+	padding: 3rem 0 0;
+	background-color: #262228;
+
+	// .footer_header
+	&_header {
+		color: #FFF;
+		margin-bottom: 2rem;
+	}
+
+	.row-main {
+		max-width: 1025px;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+	}
+
+	.row-copyright {
+		padding: 1rem;
+		border-top: 1px solid #FFF;
+		.copyright {
+			color: #FFF;
+		}
+	}
+
+	// .footer_contact_list
+	&_contact_list {
+		width: 100%;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-left: 0;
+		list-style-type: none;
+
+		// .footer_contact_list_item
+		&_item {
+			display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+			flex-direction: column;
+
+			.item_info {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+			}
+
+			.icon {
+				margin-right: 1rem;
+				color: $primary-color;
+
+				& + .text  {
+					margin-left: 0;
+				}
+			}
+
+			.text {
+				color: #FFF;
+				font-family: $font-family;
+				font-weight: normal;
+				margin-left: 2.15rem;
+			}
+		}
+	}
+
+	.col {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+	}
+}

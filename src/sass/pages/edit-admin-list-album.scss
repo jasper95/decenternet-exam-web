@@ -1,0 +1,17 @@
+@import '../utils/index';
+
+.page-edit-admin-list-album {
+
+	.row-formHeader {
+		.col-infoDetails {
+			border-left: 2px solid $gray-100;
+			padding: 1rem;
+			padding-right: 0;
+		}
+	}
+
+	.col-uploadedDetails {
+		flex-direction: column;
+	}
+
+}

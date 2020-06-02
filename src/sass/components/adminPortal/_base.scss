@@ -1,0 +1,83 @@
+$sidebar-width: 20rem;
+$sm-sidebar-width: 6rem;
+$nav-height: 3.5rem;
+$container-bg: #F6F6F6;
+$sidebar-bg: #FFFFFF;
+
+.adminPortal {
+	width: 100%;
+	padding-top: $nav-height;
+
+	// .adminPortal_topnav
+	&_topnav {
+		position: fixed;
+		top: 0;
+		left: $sidebar-width;
+		z-index: 99;
+		height: $nav-height;
+		width: 100%;
+		max-width: calc(100% - #{$sidebar-width});
+		box-shadow: 0 1em 1em 0 rgba(#000,.05);
+		background-color: $white;
+		transition:
+			left 300ms ease-out,
+			max-width 300ms ease-out;
+	}
+
+	// .adminPortal_sidebar
+	&_sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 999;
+		height: 100vh;
+		width: 100%;
+		max-width: $sidebar-width;
+		box-shadow: 1em 0 1em 0 rgba(#000,.05);
+		transition: max-width 300ms ease-out;
+	}
+
+	// .adminPortal_container
+	&_container {
+		position: relative;
+		z-index: 1;
+		top: 0;
+		left: $sidebar-width;
+		width: 100%;
+		height: calc(100vh - #{$nav-height});
+		overflow-y: auto;
+		background-color: $container-bg;
+		max-width: calc(100% - #{$sidebar-width});
+		transition:
+			left 300ms ease-out,
+			max-width 300ms ease-out;
+	}
+}
+
+.adminPortal-sidebarCollapsed {
+
+	.adminPortal_topnav ,
+	.adminPortal_container {
+		left: $sm-sidebar-width;
+		max-width: calc(100% - #{$sm-sidebar-width});
+	}
+
+	.adminPortal_sidebar {
+		max-width: $sm-sidebar-width;
+	}
+}
+
+
+@media (max-width: 737px) {
+	.adminPortal {
+		width: 100vw;
+		overflow: hidden;
+		// .adminPortal_container
+		&_container {
+			min-width: calc(100vw - #{$sm-sidebar-width});
+			height: auto;
+			overflow: visible;
+		}
+	}
+}
+

@@ -31,7 +31,7 @@ export default function useMutation(params) {
       isBase = false,
     } = allParams;
     let { url } = allParams;
-    url = [url, ['delete'].includes(method.toLowerCase()) && body.id].filter(Boolean).join('/');
+    url = [url, ['delete', 'put'].includes(method.toLowerCase()) && body.id].filter(Boolean).join('/');
     url = [isBase && 'base', url].filter(Boolean).join('');
     const response = await axios({
       data: body,

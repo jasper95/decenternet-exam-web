@@ -43,3 +43,8 @@ npm run build:client
 ```
 
 This will generate static files under `build` directory
+
+## Linters
+
+- Airbnb React
+- jsx-a11y (accessibility)

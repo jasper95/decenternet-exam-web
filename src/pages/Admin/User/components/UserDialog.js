@@ -10,6 +10,7 @@ function CreateUser(props) {
     formState, formHandlers,
   } = props;
   const { fields, errors } = formState;
+  console.log('fields: ', fields);
   const { onElementChange } = formHandlers;
   return (
     <>

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector } from 'redux-starter-kit';
 import { authRequest } from 'shared/redux/auth/reducer';
 import { SpinnerSkeletonLoader } from 'shared/components/Skeletons';
-
+import history from 'shared/utils/history';
+import useRouter from 'shared/hooks/useRouter';
 
 export const authSelector = createSelector(
   state => state.auth.user,
@@ -21,21 +21,25 @@ const withAuth = (WrappedComponent) => {
   function Auth(props) {
     const dispatch = useDispatch();
     const { requireAuth } = props;
+    const router = useRouter();
     const { auth, sessionLoading, sessionRequested } = useSelector(authSelector);
+    const isIndex = router.pathname === '/';
+    const authRequiredNotReady = requireAuth && !auth;
     useEffect(() => {
       if (!sessionRequested) {
         dispatch(authRequest());
       }
     }, []);
-    if ((!sessionRequested && !auth) || (sessionLoading && requireAuth !== 'optional')) {
+    useEffect(() => {
+      const unAuthorized = sessionRequested && !auth && !sessionLoading;
+      if (unAuthorized) {
+        history.push('/login');
+      } else if (auth && requireAuth !== true) {
+        history.push('/admin');
+      }
+    }, [auth, sessionLoading, sessionRequested]);
+    if (sessionLoading || authRequiredNotReady || isIndex) {
       return (<SpinnerSkeletonLoader />);
-    }
-
-    if (!auth && sessionRequested && requireAuth === true) {
-      return (<Redirect to="/login" />);
-    }
-    if (auth && requireAuth === false) {
-      return (<Redirect to="/" />);
     }
     return (
       <WrappedComponent {...props} />

@@ -2,7 +2,6 @@ import axios from 'axios';
 import store from 'shared/redux/store';
 import { unauthorize } from 'shared/redux/auth/reducer';
 import { showError } from 'shared/redux/app/reducer';
-import cookie from 'js-cookie';
 
 const axiosInstance = axios
   .create({
@@ -10,14 +9,10 @@ const axiosInstance = axios
   });
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = cookie.get('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  } else {
-    config.headers.Authorization = `Basic ${Buffer.from(
-      `${process.env.REACT_APP_API_USERNAME}:${process.env.REACT_APP_API_PASSWORD}`,
-    ).toString('base64')}`;
-  }
+  config.headers['x-csrf-token'] = store.getState().auth.csrf;
+  config.headers.Authorization = `Basic ${Buffer.from(
+    `${process.env.REACT_APP_API_USERNAME}:${process.env.REACT_APP_API_PASSWORD}`,
+  ).toString('base64')}`;
 
   return config;
 }, err => Promise.reject(err));

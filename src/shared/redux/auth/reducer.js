@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   sessionLoading: false,
   sessionRequested: false,
+  csrf: '',
 };
 
 const auth = createSlice({
@@ -24,6 +25,9 @@ const auth = createSlice({
       state.sessionRequested = true;
       state.sessionLoading = true;
     },
+    setCsrf(state, action) {
+      state.csrf = action.payload.csrf;
+    },
   },
 });
 
@@ -34,6 +38,7 @@ export const {
   authorize,
   unauthorize,
   authRequest,
+  setCsrf,
 } = auth.actions;
 
 export default auth.reducer;

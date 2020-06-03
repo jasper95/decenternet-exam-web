@@ -25,7 +25,7 @@ function LoginPage() {
   const [formState, formHandlers] = useForm({
     initialFields, validator, onValid,
   });
-  const [loginState, onLogin] = useMutation({ url: '/login', onSuccess });
+  const [loginState, onLogin] = useMutation({ url: '/auth/login', onSuccess });
   const {
     onElementChange,
     onValidate,
@@ -86,6 +86,12 @@ function LoginPage() {
             children="Login"
             flat
           />
+          <Link
+            to="/register"
+            className="authContainer_form_action_forget"
+          >
+            Signup
+          </Link>
           <Link
             to="/forgot-password"
             className="authContainer_form_action_forget"

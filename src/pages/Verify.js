@@ -6,10 +6,13 @@ import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons/FontIcon';
 import useVerifyToken from 'shared/hooks/useVerifyToken';
 import 'sass/pages/login.scss';
+import useMutation from 'shared/hooks/useMutation';
+import useQuery from 'shared/hooks/useQuery';
 
 function Verify() {
+  const token = new URLSearchParams(window.location.search).get('token');
   const [verifyState, onVerify] = useMutation({ url: '/verify-account', method: 'put' });
-  const [verifyTokenState] = useVerifyToken({ name: 'Verification link', type: 'signup', onSuccess });
+  useQuery({ url: `/auth/validate-token?token=${token}&type=signup}` }, { onSuccess });
   return (
     <AuthLayout
       header={(
@@ -63,7 +66,7 @@ function Verify() {
     </AuthLayout>
   );
 
-  function onSuccess(token) {
+  function onSuccess() {
     onVerify({ data: { token } });
   }
 }

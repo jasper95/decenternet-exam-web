@@ -9,12 +9,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import useMutation from 'shared/hooks/useMutation';
 import { showDialog, hideDialog } from 'shared/redux/app/reducer';
 import { unauthorize } from 'shared/redux/auth/reducer';
-import AdminPortal from 'container/AdminPortal';
+import AdminLayout from 'shared/components/Layout/AdminLayout';
 import loadable from '@loadable/component';
 import cn from 'classnames';
+import history from 'shared/utils/history';
 import DialogTitleWithBack from './DialogTitleWithBack';
 import Footer from './Footer';
-import Header from './Header';
 
 const pageSelector = createSelector(
   state => state.app.toast,
@@ -39,7 +39,7 @@ function Page(props) {
   } = props;
 
 
-  const [, onLogout] = useMutation({ url: '/logout', onSuccess: onLogoutSucess });
+  const [, onLogout] = useMutation({ url: '/auth/logout', onSuccess: onLogoutSucess });
   const appData = useSelector(pageSelector);
   const dispatch = useDispatch();
   const { toast, dialog, auth } = appData;
@@ -93,9 +93,6 @@ function Page(props) {
         <link rel="stylesheet" type="text/css" href="/css/proxima.min.css" />
         <link rel="stylesheet" type="text/css" href="/css/cenvi-icon.css" />
       </Head>
-      {hasNavigation && (
-        <Header auth={auth} onLogout={handleClickLogout} />
-      )}
       {DialogComponent && (
         <DialogComponent
           {...dialog.props}
@@ -110,9 +107,9 @@ function Page(props) {
       })}
       >
         {isAdmin ? (
-          <AdminPortal {...props} onLogout={handleClickLogout}>
+          <AdminLayout {...props} onLogout={handleClickLogout}>
             {children}
-          </AdminPortal>
+          </AdminLayout>
         ) : children}
       </main>
       {hasFooter && (
@@ -134,6 +131,7 @@ function Page(props) {
   function onLogoutSucess() {
     dispatch(hideDialog());
     dispatch(unauthorize());
+    history.push('/login');
   }
 }
 

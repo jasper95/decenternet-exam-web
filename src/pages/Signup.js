@@ -18,13 +18,12 @@ const initialFields = {
   password: '',
   email: '',
   isShowPassword: false,
-  role: 'USER',
-  company_name: '',
+  role: 'admin',
 };
 
 function SignupPage() {
   const [signupState, onSignup] = useMutation({
-    url: '/signup',
+    url: '/auth/signup',
     onSuccess,
     message: 'Account successfully registered. Please verify your email to login',
   });
@@ -91,16 +90,6 @@ function SignupPage() {
           error={!!errors.email}
           errorText={errors.email}
         />
-        <TextField
-          className="iField"
-          id="password"
-          type={fields.isShowPassword ? 'text' : 'password'}
-          label="Password"
-          value={fields.password}
-          error={!!errors.password}
-          errorText={errors.password}
-          onChange={onElementChange}
-        />
         <div className="authContainer_form_action">
           <Button
             className={cn('iBttn iBttn-primary', { processing: signupState.loading })}
@@ -137,7 +126,7 @@ export default SignupPage;
 
 function validator(data) {
   const schema = yup.object({
-    role: yup.string().oneOf(['USER', 'ADMIN']).required(),
+    role: yup.string().oneOf(['user', 'admin']).required(),
     first_name: yup
       .string()
       .required(fieldIsRequired),
@@ -145,7 +134,6 @@ function validator(data) {
       .string()
       .required(fieldIsRequired),
     email: yup.string().email(fieldIsInvalid).required(fieldIsRequired),
-    password: yup.string().required(fieldIsRequired),
   });
   return getValidationResult(data, schema);
 }

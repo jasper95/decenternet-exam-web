@@ -28,7 +28,7 @@ const result = baseConfig({
   },
   devServer: {
     open: true,
-    port: process.env.PORT || 6969,
+    port: process.env.PORT || 3000,
     hotOnly: true,
     overlay: true,
     historyApiFallback: true,

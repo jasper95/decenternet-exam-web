@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import history from 'shared/utils/history';
 import {
-  authorize, loginRequest, authRequest, logoutRequest, unauthorize,
+  authorize, loginRequest, authRequest, logoutRequest, unauthorize, setCsrf,
 } from 'shared/redux/auth/reducer';
 import pick from 'lodash/pick';
 import axios from 'shared/utils/axios';
@@ -11,7 +11,7 @@ function* LoginUser(action) {
   try {
     const { payload } = action;
     const response = yield call(axios.request, {
-      url: '/login',
+      url: '/auth/login',
       data: payload,
       method: 'POST',
     });
@@ -27,7 +27,7 @@ function* LoginUser(action) {
 function* LogoutUser() {
   try {
     yield call(axios.request, {
-      url: '/logout',
+      url: '/auth/logout',
       method: 'POST',
     });
     yield put(unauthorize());
@@ -38,17 +38,17 @@ function* LogoutUser() {
 
 function* GetUserSession() {
   try {
-    const token = cookie.get('token');
-    if (token) {
-      const response = yield call(axios.request, {
-        url: '/session',
-      });
-      const user = pick(response, 'email', 'user_name');
-      yield put(authorize(user));
-    } else {
-      yield put(unauthorize());
-    }
+    const csrfResponse = yield call(axios.request, {
+      url: '/auth/csrf',
+    });
+    yield put(setCsrf(csrfResponse));
+    const response = yield call(axios.request, {
+      url: '/auth/session',
+    });
+    const user = pick(response, 'email', 'first_name', 'last_name');
+    yield put(authorize(user));
   } catch (err) {
+    yield put(unauthorize());
     console.error('err: ', err);
   }
 }

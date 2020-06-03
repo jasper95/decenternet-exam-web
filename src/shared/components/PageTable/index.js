@@ -1,7 +1,6 @@
 import React from 'react';
 import Paper from 'react-md/lib/Papers/Paper';
 import DataTable from 'shared/components/DataTable';
-import pick from 'lodash/pick';
 import SearchRenderer from './SearchRenderer';
 import ToolbarRenderer from './ToolbarRenderer';
 

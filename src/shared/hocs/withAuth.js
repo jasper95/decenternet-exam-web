@@ -31,7 +31,7 @@ const withAuth = (WrappedComponent) => {
       }
     }, []);
     useEffect(() => {
-      const unAuthorized = sessionRequested && !auth && !sessionLoading;
+      const unAuthorized = sessionRequested && !auth && !sessionLoading && requireAuth;
       if (unAuthorized) {
         history.push('/login');
       } else if (auth && requireAuth !== true) {
